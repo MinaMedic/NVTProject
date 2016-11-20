@@ -1,0 +1,17 @@
+{
+  "name": "projectnvt",
+  "version": "1.0.0",
+  "description": "Error handling project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "KMJ Inovations",
+  "dependencies": {
+    "bluebird": "^2.11.0",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "mongoose": "^4.3.7"
+  },
+  "license": "MIT"
+}
