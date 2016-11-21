@@ -1,0 +1,22 @@
+1. Registrovanje novog korisnika
+    -TODO1: implementirati obradu greske ako UserEmail vec postoji
+
+2. Login korisnika
+    - TODO1: implementirati obradu greske ako UserEmail ne postoji
+    - TODO2: implementirati obradu greske ako UserPassword se ne poklapa
+
+3. Dodavanje nove aplikacije od strane odredjenog korisnika    
+    - korisnik se postavlja kao owner aplikacije (odgovorna osoba)
+    - novokreirana aplikacija se dodaje u User.applications
+    - TODO1: implementirati obradu greske ako ne postoji korisnik koji pokusava uneti novu aplikaciju
+
+
+4. Dodavanje korisnika koji ce imati pristup aplikaciji
+    - prosledjuje se ceo User u request-u
+    - ID aplikacije se prosledjuje kao param
+    - u Application.users se dodaje novi korisnik
+    - TODO1: implementirati obradu greske ako ne postoji user koga prosledjujemo 
+    - TODO2: implementirati obradu greske ako ne postoji aplikacija na koju dodajemo user-ako
+    - TODO3: proveriti da li je dovoljno da prosledjujemo samo userID ili userEMAIL umesto celog objekta USER
+
+5. 

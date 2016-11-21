@@ -2,44 +2,41 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // kreiramo novu shemu
-//email, password, ime, prezime, inf.o pridruzenim aplikacijama
+//Svaka greška za sebe može da ima vezano opciono polje koje govori o verziji aplikacije na kojoj se ta greška dogodila
+// Gresk ima stack (izuzetak kojem odgovara, vreme nastanka, proizvoljne podatke, fragment 
+// koji govori o delu aplikacije gde je greska nastala)
+//potrebno je obavestiti sve korisnike vezane za app kad se desi greska
+//dogadaj ima komentare
 var eventSchema = new Schema({
   version: {
     type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true,
+    required: false,
     unique: false
   },
-  name: {
+  exception: {
     type: String,
-    required: true,
+    required: false,
     unique: false
   },
-  surname: {
+  fragment: {
     type: String,
-    required: true,
+    required: false,
     unique: false
   },
   createdAt: Date
 });
 
-//da li se ovako dodaje poddokument????
-//userSchema.add({applications:[applicationSchema]});
+//eventSchema.add({applications:[applicationSchema]});
 
 // prilikom snimanja se postavi datum
-userSchema.pre('save', function(next) {
-
+eventSchema.pre('save', function(next) {
   this.createdAt = new Date();
-  // predjemo na sledecu funckiju u lancu
   next();
 });
 
 // od sheme kreiramo model koji cemo koristiti
-var User = mongoose.model('User', userSchema);
+var Event = mongoose.model('Event', eventSchema);
 
 // publikujemo kreirani model
-module.exports = User;
+module.exports.model = Event;
+module.exports.schema = eventSchema;
