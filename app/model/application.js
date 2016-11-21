@@ -57,4 +57,5 @@ applicationSchema.pre('save', function(next) {
 var Application = mongoose.model('Application', applicationSchema);
 
 // publikujemo kreirani model
-module.exports = Application;
+module.exports.model = Application;
+module.exports.schema = applicationSchema;

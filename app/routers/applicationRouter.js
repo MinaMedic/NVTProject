@@ -1,6 +1,8 @@
 var express = require('express');
-var Application = require('../model/application');
+var Application = require('../model/application').model;
 var applicationRouter = express.Router(); // koristimo express Router
+var User = require('../model/user');
+
 
 // definisanje ruta za blog
 applicationRouter
@@ -17,10 +19,26 @@ applicationRouter
   .post('/', function(req, res, next) {
     var application = new Application(req.body);
     application.save(function(err, entry) {
-      if (err) next(err);
+      if (err) return next(err);
 
       res.json(entry);
 
+    });
+  })
+  .post('/user/:id',function(req, res, next) {
+    var application = new Application(req.body);
+    User.findOne({"_id":req.params.id},function (err, entry) {
+      if(err) return next(err);
+      application.save(function (err, application) {
+        if(err) return next(err);
+        User.findByIdAndUpdate(entry._id, {$push:{"applications":application}}, function (err, entry) {
+          if(err) return next(err);
+          //res.json(entry);
+          User.findOne({"_id":req.params.id},function (err, entry) {
+              res.json(entry);
+          })
+        });
+      });
     });
   });
 

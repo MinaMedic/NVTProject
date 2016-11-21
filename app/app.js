@@ -7,7 +7,7 @@ var userRouter = require('../app/routers/userRouter');
 var applicationRouter = require('../app/routers/applicationRouter');
 // koristimo mongoose model koju smo kreirali u folderu model
 var User = require('../app/model/user');
-var Application = require('../app/model/application');
+var Application = require('../app/model/application').model;
 
 mongoose.connect('mongodb://localhost/projectNVT');
 
