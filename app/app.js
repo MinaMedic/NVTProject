@@ -6,7 +6,7 @@ mongoose.Promise = require('bluebird');
 var userRouter = require('../app/routers/userRouter');
 var applicationRouter = require('../app/routers/applicationRouter');
 // koristimo mongoose model koju smo kreirali u folderu model
-var User = require('../app/model/user');
+var User = require('../app/model/user').model;
 var Application = require('../app/model/application').model;
 
 mongoose.connect('mongodb://localhost/projectNVT');
@@ -29,6 +29,7 @@ app.use('/api/applications', applicationRouter);
 
 //na kraju dodajemo middleware za obradu gresaka
 app.use(function(err, req, res, next) {
+
   var message = err.message;
   var error = err.error || err;
   var status = err.status || 500;

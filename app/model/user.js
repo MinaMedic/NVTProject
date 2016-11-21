@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var User = require('../model/user');
+
 var applicationSchema = require('../model/application').schema;
 
 // kreiramo novu shemu
@@ -33,6 +33,9 @@ var userSchema = new Schema({
 //da li se ovako dodaje poddokument????
 userSchema.add({applications:[applicationSchema]});
 
+applicationSchema.add({users : [userSchema] });
+applicationSchema.add({owner : [userSchema]});
+
 // prilikom snimanja se postavi datum
 userSchema.pre('save', function(next) {
 
@@ -45,4 +48,5 @@ userSchema.pre('save', function(next) {
 var User = mongoose.model('User', userSchema);
 
 // publikujemo kreirani model
-module.exports = User;
+module.exports.model = User;
+module.exports.schema = userSchema;

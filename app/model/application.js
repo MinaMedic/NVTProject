@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var userSchema = require('../model/user').schema; 
+
 // kreiramo novu shemu
 //ime, opis tehnologije, najskoriju verizuju(nije req), link ka rep (nije req), dogadjaji, domen(ID)
 var applicationSchema = new Schema({
@@ -33,8 +35,6 @@ var applicationSchema = new Schema({
   updatedAt: Date
 });
 
-//da li se ovako dodaje poddokument????
-//applicationSchema.add({events:[eventSchema]});
 
 // prilikom snimanja se postavi datum
 applicationSchema.pre('save', function(next) {
