@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userSchema = require('../model/user').schema; 
+var eventSchema = require('../model/event').schema;
 
 // kreiramo novu shemu
 //ime, opis tehnologije, najskoriju verizuju(nije req), link ka rep (nije req), dogadjaji, domen(ID)
@@ -35,9 +35,12 @@ var applicationSchema = new Schema({
   updatedAt: Date
 });
 
+//lista dogadjaja koji su se desili u aplikaciji
+applicationSchema.add({events:[eventSchema]}); 
 
 // prilikom snimanja se postavi datum
 applicationSchema.pre('save', function(next) {
+
 
  // preuzmemo trenutni datum
   var currentDate = new Date();

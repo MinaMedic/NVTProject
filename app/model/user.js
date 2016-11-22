@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var applicationSchema = require('../model/application').schema;
+var commentSchema = require('../model/comment').schema;
 
 // kreiramo novu shemu
 //email, password, ime, prezime, inf.o pridruzenim aplikacijama
@@ -26,18 +27,22 @@ var userSchema = new Schema({
     required: true,
     unique: false
   },
-  createdAt: Date
-  //applications: [{type : Schema.Types.ObjectId, ref:'Application'}]
+  createdAt: Date,
+  signedBy: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-//da li se ovako dodaje poddokument????
-userSchema.add({applications:[applicationSchema]});
+//ovo je lista aplikacija koje je korisnik registrovao i na koje je dodat od strane drugih korisnika
+userSchema.add({applications:[applicationSchema]}); 
 
-applicationSchema.add({users : [userSchema] });
-applicationSchema.add({owner : [userSchema]});
+//aplikacija pamti korisnika koji je registrovao
+applicationSchema.add({owner : userSchema});
+
+//commentSchema.add({signedBy:userSchema});
 
 // prilikom snimanja se postavi datum
 userSchema.pre('save', function(next) {
+  
+
 
   this.createdAt = new Date();
   // predjemo na sledecu funckiju u lancu

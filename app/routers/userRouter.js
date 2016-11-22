@@ -8,7 +8,7 @@ userRouter
   .get('/:id', function(req, res, next) {
     User.findOne({
       "_id": req.params.id
-    }).populate('applications').exec(function(err, entry) {
+    }).populate('applications').exec(function(err, entry) {  //ovo reci jovani!!!!!!!
       // ako se desila greska predjemo na sledeci middleware (za rukovanje greskama)
       if (err) return next(err);
       res.json(entry);
@@ -21,6 +21,7 @@ userRouter
   })
   .post('/', function(req, res, next) {
     var user = new User(req.body);
+    console.log(user)
     user.save(function(err, entry) {
       if (err) return next(err);
 
@@ -43,15 +44,18 @@ userRouter
   //saljemo id aplikacije
   //u bodi saljemo usera koji cemo zakaciti na app
    .post('/application/:id',function(req, res, next) {
-    var user = new User(req.body);
+    //ovo je korisnik koji treba da se doda
+    var user = new User(req.body); 
+
+    //trazi aplikaciju kojoj se dodaje korisnik
     Application.findOne({"_id":req.params.id},function (err, entry) {
       if(err) return next(err); //greska ako nije pronasao aplikaciju
 
-          Application.findByIdAndUpdate(entry._id, {$push:{"users":user}}, function (err, application) {
+          //korisniku u listu aplikacija dodajemo novu
+          User.findByIdAndUpdate(user._id, {$push:{"applications":entry}}, function (err, application) {
             if(err) return next(err); //ako nije uspeo aplikaciji da doda korisnika
             
-            //kako da vratimo apdejtovan objekat da ne pristupamo bazi 100 puta?? :D :D :D
-              Application.findOne({"_id":application.id},function (err, entry) {
+             User.findOne({"_id":user._id},function (err, entry) {
                 res.json(entry); //vrati apdejtovan objekat
              })
           });

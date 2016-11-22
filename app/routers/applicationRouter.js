@@ -16,15 +16,16 @@ applicationRouter
       res.json(data);
     });
   })
-  /*.post('/', function(req, res, next) {
-    var application = new Application(req.body);
-    application.save(function(err, entry) {
+  //vrati sve aplikacije korisnika
+  .get('/user/:id', function(req, res, next) {
+    User.findOne({
+      "_id": req.params.id
+    }).populate('applications').exec(function(err, entry) {  //ovo reci jovani!!!!!!!
+      // ako se desila greska predjemo na sledeci middleware (za rukovanje greskama)
       if (err) return next(err);
-
-      res.json(entry);
-
+      res.json(entry.applications);
     });
-  })*/
+  })
   //OVO JE REGISTRACIJA APLIKACIJE
   //kada korisniku dodamo aplikaciju, ona se dodaje u listu nejgovih aplikacija
   //i u aplikaciji se setuje owner na tog usera
@@ -33,15 +34,14 @@ applicationRouter
     User.findOne({"_id":req.params.id},function (err, entry) {
       if(err) return next(err); //greska ako nije pronasao usera
 
-      
+       // application.owner = entry;
         application.save(function (err, application) {
           if(err) return next(err); //ako nije upisao aplikaciju
 
           User.findByIdAndUpdate(entry._id, {$push:{"applications":application}}, function (err, entry) {
             if(err) return next(err); //ako nije uspeo korisniku da doda aplikaciju
-            
-            //kako da vratimo apdejtovan objekat da ne pristupamo bazi 100 puta?? :D :D :D
-            Application.findByIdAndUpdate(application._id, {$push:{"owner":entry}}, function (err, entry) {
+        
+            Application.findByIdAndUpdate(application._id, {$set:{owner:entry}}, function (err, entry) {
               Application.findOne({"_id":application.id},function (err, entry) {
                 res.json(entry); //vrati apdejtovan objekat
              })

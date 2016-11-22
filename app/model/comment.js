@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
-var userSchema = require('../model/user').schema; 
+ 
 
 // kreiramo novu shemu
 var commentSchema = new Schema({
@@ -13,7 +12,6 @@ var commentSchema = new Schema({
 });
 
 commentSchema.add({comments:[commentSchema]});
-commentSchema.add({signedBy:userSchema});
 
 // prilikom snimanja se postavi datum
 commentSchema.pre('save', function(next) {
