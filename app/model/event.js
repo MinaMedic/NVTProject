@@ -1,14 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//Importovanje postojecih sema
 var commentSchema = require('../model/comment').schema;
 
-// kreiramo novu shemu
-//Svaka greška za sebe može da ima vezano opciono polje koje govori o verziji aplikacije na kojoj se ta greška dogodila
-// Greska ima stack (izuzetak kojem odgovara, vreme nastanka, proizvoljne podatke, fragment 
-// koji govori o delu aplikacije gde je greska nastala)
-//potrebno je obavestiti sve korisnike vezane za app kad se desi greska
-//dogadaj ima komentare
+
+//Kreiranje nove seme sa zadatatim poljima
 var eventSchema = new Schema({
   version: {
     type: String,
@@ -37,17 +34,24 @@ var eventSchema = new Schema({
   }
 });
 
+
+//Svaki dogadjaj cuva listu svih svojih komentara
 eventSchema.add({comments:[commentSchema]});
 
-// prilikom snimanja se postavi datum
+
+//Funkcija koja snima dogadjaj
+//Automatski se dodaje datum kreiranja dogadjaja
+//Na kraju se automatski prelazi na sledecu funkciju u lancu
 eventSchema.pre('save', function(next) {
   this.createdAt = new Date();
   next();
 });
 
+
 // od sheme kreiramo model koji cemo koristiti
 var Event = mongoose.model('Event', eventSchema);
 
-// publikujemo kreirani model
+
+//Publikujemo model i semu
 module.exports.model = Event;
 module.exports.schema = eventSchema;

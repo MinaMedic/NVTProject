@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
+//Importovanje postojecih sema
 var applicationSchema = require('../model/application').schema;
 var commentSchema = require('../model/comment').schema;
 
-// kreiramo novu shemu
-//email, password, ime, prezime, inf.o pridruzenim aplikacijama
+
+//Kreiranje nove seme sa zadatatim poljima
 var userSchema = new Schema({
   email: {
     type: String,
@@ -31,27 +33,30 @@ var userSchema = new Schema({
   signedBy: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-//ovo je lista aplikacija koje je korisnik registrovao i na koje je dodat od strane drugih korisnika
+
+//Svaki korisnik cuva listu svih aplikacija koje je on kreirao (tj. ciji je owner)
+//i svih aplikacija na koje je dodat od strane drugih korisnika
 userSchema.add({applications:[applicationSchema]}); 
 
-//aplikacija pamti korisnika koji je registrovao
+
+//Svaka aplikacija cuva poddokument korisnika koji ju je kreirao
+//Ovo nije moglo biti dodato unutar application.js fajla zbog problema cirkularne zavisnosti
 applicationSchema.add({owner : userSchema});
 
-//commentSchema.add({signedBy:userSchema});
 
-// prilikom snimanja se postavi datum
+//Funkcija koja snima aplikaciju
+//Automatski se dodaje datum kreiranja aplikacije
+//Na kraju se automatski prelazi na sledecu funkciju u lancu
 userSchema.pre('save', function(next) {
-  
-
-
   this.createdAt = new Date();
-  // predjemo na sledecu funckiju u lancu
   next();
 });
 
-// od sheme kreiramo model koji cemo koristiti
+
+//Od seme kreiramo model koji cemo koristiti
 var User = mongoose.model('User', userSchema);
 
-// publikujemo kreirani model
+
+//Publikujemo model i semu
 module.exports.model = User;
 module.exports.schema = userSchema;

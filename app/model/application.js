@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
+//Importovanje postojecih sema
 var eventSchema = require('../model/event').schema;
 
-// kreiramo novu shemu
-//ime, opis tehnologije, najskoriju verizuju(nije req), link ka rep (nije req), dogadjaji, domen(ID)
+
+//Kreiranje nove seme sa zadatatim poljima
 var applicationSchema = new Schema({
   domain: {
     type: String,
@@ -35,30 +37,28 @@ var applicationSchema = new Schema({
   updatedAt: Date
 });
 
-//lista dogadjaja koji su se desili u aplikaciji
+
+//Svaka aplikacija cuva listu svih dogadjaja koji su se desili unutar nje
 applicationSchema.add({events:[eventSchema]}); 
 
-// prilikom snimanja se postavi datum
+
+//Funkcija koja snima aplikaciju
+//Automatski se dodaje datum kreiranja aplikacije
+//Automastki se azurira datum azuriranja aplikacije
+//Na kraju se automatski prelazi na sledecu funkciju u lancu
 applicationSchema.pre('save', function(next) {
-
-
- // preuzmemo trenutni datum
   var currentDate = new Date();
-
-  // postavimo trenutni datum poslednju izmenu
   this.updatedAt = currentDate;
-
-  // ako nije postavljena vrednost za createdAt, postavimo je
   if (!this.createdAt)
     this.createdAt = currentDate;
-
-  // predjemo na sledecu funckiju u lancu
   next();
 });
 
-// od sheme kreiramo model koji cemo koristiti
+
+//Od seme kreiramo model koji cemo koristiti
 var Application = mongoose.model('Application', applicationSchema);
 
-// publikujemo kreirani model
+
+//Publikujemo model i semu
 module.exports.model = Application;
 module.exports.schema = applicationSchema;

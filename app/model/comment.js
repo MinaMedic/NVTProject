@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
  
 
-// kreiramo novu shemu
+//Kreiranje nove seme sa zadatatim poljima
 var commentSchema = new Schema({
   text: {
     type: String,
@@ -11,17 +11,24 @@ var commentSchema = new Schema({
   createdAt: Date
 });
 
+
+//Svaki komentar ima listu podkomentara
 commentSchema.add({comments:[commentSchema]});
 
-// prilikom snimanja se postavi datum
+
+//Funkcija koja snima komentar
+//Automatski se dodaje datum kreiranja komentara
+//Na kraju se automatski prelazi na sledecu funkciju u lancu
 commentSchema.pre('save', function(next) {
     this.createdAt = new Date();
-  next();
+    next();
 });
 
-// od sheme kreiramo model koji cemo koristiti
+
+//Od seme kreiramo model koji cemo koristiti
 var Comment = mongoose.model('Comment', commentSchema);
 
-// publikujemo kreirani model
+
+//Publikujemo kreirani model i semu
 module.exports.model = Comment;
 module.exports.schema = commentSchema;

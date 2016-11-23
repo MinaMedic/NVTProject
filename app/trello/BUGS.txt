@@ -1,13 +1,4 @@
-1. Mozda promeniti da User cuva listu svih aplikacija na koje je registrovan, 
-    umesto da cuva listu aplikacija kojima je on owner?
-    < Korisnici imaju informacije, poput email-a (koji takođe može da bude i korisničko ime), imena i
-      prezimena, informacije o pridruženim aplikacijama. >
+1. Da li funkciji koja dodaje korisnika u aplikaciju treba prosledjivati citav objekat korisnika
+ili samo ID?
 
-2. Proveriti zasto findByIDAndUpdate ne vraca update-ovan fajl, vec je potrebno
-    ponovo pozvati findOne ?
-
-3. Proveriti zasto ne mozemo u Application.js dodavati UserSchemu?
-
-4. Proveriti kako da Owner ne bude lista Usera, vec samo jedan User.
-
-5.  Proveriti kako vratiti message i status greske kad se dogodi greska.
+2. Da li ce se moci dodavati samo vec postojeci korisnici ili bilo koji?
