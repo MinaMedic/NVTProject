@@ -36,7 +36,6 @@ userRouter
   //URL: api/users
   .post('/', function(req, res, next) {
     var user = new User(req.body);
-    console.log(user)
     user.save(function(err, entry) {
       if (err) return next(err);
       res.json(entry);
@@ -70,16 +69,21 @@ userRouter
  .post('/application/:id',function(req, res, next) {
     var user = new User(req.body); 
 
-    Application.findOne({"_id":req.params.id},function (err, entry) {
+    //Application.findOne({"_id":req.params.id},function (err, entry) {
+    Application.findByIdAndUpdate(req.params.id, {$push:{"users":user._id}}, function (err, entry) {
       if(err) return next(err);
 
-      User.findByIdAndUpdate(user._id, {$push:{"applications":entry}}, function (err, application) {
-            if(err) return next(err); 
-            
-             User.findOne({"_id":user._id},function (err, entry) {
-                res.json(entry); 
-             })
-          });
+      Application.findOne({"_id":entry._id},function (err, entry) {
+        if(err) return next(err); 
+
+          User.findByIdAndUpdate(user._id, {$push:{"applications":entry}}, function (err, application) {
+              if(err) return next(err); 
+
+              User.findOne({"_id":user._id},function (err, entry) {
+                  res.json(entry); 
+              })
+            });
+        });
       });
   })
 
@@ -93,7 +97,8 @@ userRouter
     User.findOne({"_id":user._id},function (err, entryUser) {
       if(err) return next(err);
 
-      Application.findOne({"_id":req.params.id},function (err, entry) {
+      //Application.findOne({"_id":req.params.id},function (err, entry) {
+      Application.findByIdAndUpdate(req.params.id, {$push:{"users":entryUser._id}}, function (err, entry) {
       if(err) return next(err);
 
       User.findByIdAndUpdate(entryUser._id, {$push:{"applications":entry}}, function (err, application) {
@@ -106,6 +111,7 @@ userRouter
        });
     });
   });
+
 
 
 //Publikujemo rute korisnika

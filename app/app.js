@@ -31,6 +31,7 @@ app.use(bodyParser.json());
 
 // na kom portu slusa server
 var port = process.env.PORT || 8080; 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // *******************************************************
 
 
 app.use('/api/users', userRouter);

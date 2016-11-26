@@ -58,7 +58,7 @@ applicationRouter
           User.findByIdAndUpdate(entry._id, {$push:{"applications":application}}, function (err, entry) {
             if(err) return next(err);
         
-            Application.findByIdAndUpdate(application._id, {$set:{owner:entry}}, function (err, entry) {
+            Application.findByIdAndUpdate(application._id, {$set:{owner:entry._id}}, function (err, entry) {
               Application.findOne({"_id":application.id},function (err, entry) {
                 res.json(entry);
              });

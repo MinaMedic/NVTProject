@@ -1,6 +1,8 @@
 var express = require('express');
 var eventRouter = express.Router(); // koristimo express Router
 
+var MailSender = require('../email');
+
 
 //Importovanje postojecih dokumenata
 var User = require('../model/user').model;
@@ -103,6 +105,9 @@ eventRouter
           if(err) return next(err); 
         
           Application.findOne({"_id":entry.id},function (err, entry) {
+
+              MailSender.sendMail(entry, event); //posalji mejl
+
               res.json(entry); //vrati apdejtovan objekat
             })
           });

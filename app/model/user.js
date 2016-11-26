@@ -12,7 +12,8 @@ var userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    sparse: true
   },
   password: {
     type: String,
@@ -29,8 +30,7 @@ var userSchema = new Schema({
     required: true,
     unique: false
   },
-  createdAt: Date,
-  signedBy: { type: Schema.Types.ObjectId, ref: 'User' }
+  createdAt: Date
 });
 
 
@@ -41,8 +41,11 @@ userSchema.add({applications:[applicationSchema]});
 
 //Svaka aplikacija cuva poddokument korisnika koji ju je kreirao
 //Ovo nije moglo biti dodato unutar application.js fajla zbog problema cirkularne zavisnosti
-applicationSchema.add({owner : userSchema});
+//applicationSchema.add({owner : userSchema});
 
+//******************************************************************
+//applicationSchema.add({users:[userSchema]})
+//******************************************************************
 
 //Funkcija koja snima aplikaciju
 //Automatski se dodaje datum kreiranja aplikacije

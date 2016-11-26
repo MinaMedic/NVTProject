@@ -11,7 +11,9 @@ var applicationSchema = new Schema({
   domain: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    sparse: true,
+    dropDups: true
   },
   name: {
     type: String,
@@ -34,7 +36,9 @@ var applicationSchema = new Schema({
     unique: false
   },
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
+  users: [{ type: Schema.Types.ObjectId, ref: 'User'}]
 });
 
 

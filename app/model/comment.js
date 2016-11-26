@@ -8,7 +8,8 @@ var commentSchema = new Schema({
     type: String,
     required: true
   },
-  createdAt: Date
+  createdAt: Date,
+  signedBy: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 
