@@ -31,12 +31,13 @@ var eventSchema = new Schema({
     type: Date,
     required: false,
     unique: false
-  }
+  },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
 
 //Svaki dogadjaj cuva listu svih svojih komentara
-eventSchema.add({comments:[commentSchema]});
+//eventSchema.add({comments:[commentSchema]});
 
 
 //Funkcija koja snima dogadjaj

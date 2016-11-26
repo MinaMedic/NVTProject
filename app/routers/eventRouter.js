@@ -17,7 +17,10 @@ eventRouter
   .get('/:id', function(req, res, next) {
     Event.findOne({
       "_id": req.params.id
-    })
+    }).populate('comments').exec(function(err, entry) {
+      if (err) return next(err);
+      res.json(entry);
+    });
   })
 
 
@@ -101,7 +104,8 @@ eventRouter
       event.save(function (err, event) {
         if(err) return next(err); 
 
-        Application.findByIdAndUpdate(entry._id, {$push:{"events":event}}, function (err, entry) {
+        //Application.findByIdAndUpdate(entry._id, {$push:{"events":event}}, function (err, entry) {
+        Application.findByIdAndUpdate(entry._id, {$push:{"events":event._id}}, function (err, entry) {
           if(err) return next(err); 
         
           Application.findOne({"_id":entry.id},function (err, entry) {

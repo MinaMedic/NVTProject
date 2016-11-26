@@ -9,6 +9,15 @@ var Event = require('../model/event').model;
 
 //Definisanje ruta za komentar
 commentRouter
+  //Metoda koja vraca sve komentare
+  //URL: api/users
+  .get('/', function(req, res) {
+    Comment.find({}, function(err, data, next) {
+      res.json(data);
+    });
+  })
+
+
   //Metoda koja vraca komentar na osnovu prosledjenog ID-a
   //Sa populate('comments') sa koemntarom vracamo i listu svih njegovih podkomentara
   //URL: api/comments/id
@@ -36,7 +45,7 @@ commentRouter
     comment.save(function (err, comment) {
       if(err) return next(err);
 
-      Event.findByIdAndUpdate(entry._id, {$push:{"comments":comment}}, function (err, entry) {
+      Event.findByIdAndUpdate(entry._id, {$push:{"comments":comment._id}}, function (err, entry) {
         if(err) return next(err);
 
         Event.findOne({"_id":entry.id},function (err, entry) {
@@ -62,7 +71,7 @@ commentRouter
     comment.save(function (err, comment) {
       if(err) return next(err);
 
-      Comment.findByIdAndUpdate(entry._id, {$push:{"comments":comment}}, function (err, entry) {
+      Comment.findByIdAndUpdate(entry._id, {$push:{"comments":comment._id}}, function (err, entry) {
         if(err) return next(err);
 
         Comment.findOne({"_id":entry.id},function (err, entry) {

@@ -76,7 +76,8 @@ userRouter
       Application.findOne({"_id":entry._id},function (err, entry) {
         if(err) return next(err); 
 
-          User.findByIdAndUpdate(user._id, {$push:{"applications":entry}}, function (err, application) {
+          //User.findByIdAndUpdate(user._id, {$push:{"applications":entry}}, function (err, application) {
+            User.findByIdAndUpdate(user._id, {$push:{"applications":entry._id}}, function (err, application) {
               if(err) return next(err); 
 
               User.findOne({"_id":user._id},function (err, entry) {
@@ -101,7 +102,8 @@ userRouter
       Application.findByIdAndUpdate(req.params.id, {$push:{"users":entryUser._id}}, function (err, entry) {
       if(err) return next(err);
 
-      User.findByIdAndUpdate(entryUser._id, {$push:{"applications":entry}}, function (err, application) {
+      //User.findByIdAndUpdate(entryUser._id, {$push:{"applications":entry}}, function (err, application) {
+        User.findByIdAndUpdate(user._id, {$push:{"applications":entry._id}}, function (err, application) {
             if(err) return next(err); 
             
             User.findOne({"_id":entryUser._id},function (err, entry) {

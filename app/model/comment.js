@@ -9,12 +9,14 @@ var commentSchema = new Schema({
     required: true
   },
   createdAt: Date,
-  signedBy: { type: Schema.Types.ObjectId, ref: 'User' }
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}]
+  //signedBy: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
 
+
 //Svaki komentar ima listu podkomentara
-commentSchema.add({comments:[commentSchema]});
+//commentSchema.add({comments:[commentSchema]});
 
 
 //Funkcija koja snima komentar

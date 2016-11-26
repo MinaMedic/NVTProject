@@ -30,22 +30,21 @@ var userSchema = new Schema({
     required: true,
     unique: false
   },
-  createdAt: Date
+  createdAt: Date,
+  applications: [{ type: Schema.Types.ObjectId, ref: 'Application'}]
 });
 
+//Autor komenntara
+commentSchema.add({signedBy:[userSchema]});
 
 //Svaki korisnik cuva listu svih aplikacija koje je on kreirao (tj. ciji je owner)
 //i svih aplikacija na koje je dodat od strane drugih korisnika
-userSchema.add({applications:[applicationSchema]}); 
+//userSchema.add({applications:[applicationSchema]}); 
 
 
 //Svaka aplikacija cuva poddokument korisnika koji ju je kreirao
 //Ovo nije moglo biti dodato unutar application.js fajla zbog problema cirkularne zavisnosti
 //applicationSchema.add({owner : userSchema});
-
-//******************************************************************
-//applicationSchema.add({users:[userSchema]})
-//******************************************************************
 
 //Funkcija koja snima aplikaciju
 //Automatski se dodaje datum kreiranja aplikacije

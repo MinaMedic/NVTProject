@@ -38,12 +38,13 @@ var applicationSchema = new Schema({
   createdAt: Date,
   updatedAt: Date,
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
-  users: [{ type: Schema.Types.ObjectId, ref: 'User'}]
+  users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+  events: [{ type: Schema.Types.ObjectId, ref: 'Event'}]
 });
 
 
 //Svaka aplikacija cuva listu svih dogadjaja koji su se desili unutar nje
-applicationSchema.add({events:[eventSchema]}); 
+//applicationSchema.add({events:[eventSchema]}); 
 
 
 //Funkcija koja snima aplikaciju

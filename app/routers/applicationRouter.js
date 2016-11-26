@@ -14,7 +14,12 @@ applicationRouter
   .get('/:id', function(req, res, next) {
     Application.findOne({
       "_id": req.params.id
-    })
+    }).populate('events')
+      .populate('users')
+      .exec(function(err, entry) {
+        if (err) return next(err);
+        res.json(entry);
+    });
   })
 
 
@@ -55,7 +60,8 @@ applicationRouter
       application.save(function (err, application) {
           if(err) return next(err); 
 
-          User.findByIdAndUpdate(entry._id, {$push:{"applications":application}}, function (err, entry) {
+          //User.findByIdAndUpdate(entry._id, {$push:{"applications":application}}, function (err, entry) {
+           User.findByIdAndUpdate(entry._id, {$push:{"applications":application._id}}, function (err, entry) {
             if(err) return next(err);
         
             Application.findByIdAndUpdate(application._id, {$set:{owner:entry._id}}, function (err, entry) {
