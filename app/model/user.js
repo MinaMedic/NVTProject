@@ -35,7 +35,7 @@ var userSchema = new Schema({
 });
 
 //Autor komenntara
-commentSchema.add({signedBy:[userSchema]});
+//commentSchema.add({signedBy:userSchema});
 
 //Svaki korisnik cuva listu svih aplikacija koje je on kreirao (tj. ciji je owner)
 //i svih aplikacija na koje je dodat od strane drugih korisnika

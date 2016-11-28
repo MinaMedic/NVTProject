@@ -95,7 +95,7 @@ userRouter
  //Funkcija vraca update-ovanog korisnika
  //URL: api/users/applicationNew/IDapp
  .post('/applicationNew/:id',function(req, res, next) {
-    User.findOne({"_id":user._id},function (err, entryUser) {
+    User.findOne({"_id":req.body._id},function (err, entryUser) {
       if(err) return next(err);
 
       //Application.findOne({"_id":req.params.id},function (err, entry) {
@@ -103,7 +103,7 @@ userRouter
       if(err) return next(err);
 
       //User.findByIdAndUpdate(entryUser._id, {$push:{"applications":entry}}, function (err, application) {
-        User.findByIdAndUpdate(user._id, {$push:{"applications":entry._id}}, function (err, application) {
+        User.findByIdAndUpdate(entryUser._id, {$push:{"applications":entry._id}}, function (err, application) {
             if(err) return next(err); 
             
             User.findOne({"_id":entryUser._id},function (err, entry) {

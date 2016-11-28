@@ -9,8 +9,8 @@ var commentSchema = new Schema({
     required: true
   },
   createdAt: Date,
-  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}]
-  //signedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
+  signedBy: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
 

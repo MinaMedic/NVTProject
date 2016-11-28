@@ -26,8 +26,6 @@ mailSender.sendMail = function(application, event){
 			}
 		});
 	}
-
-
 };
 
 
