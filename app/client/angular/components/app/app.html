@@ -68,5 +68,33 @@
 			</div>
             </ul>
 		</div>
+        <div ng-show="appCtrl.showByVersion">
+            <ul class="list-group" ng-repeat="list in appCtrl.filteredLists">
+			<div class="text-left">
+				<li class="list-group-item" ng-click="isCollapsed = !isCollapsed">Version {{list[0].version}}<span class="badge">{{list.length}}</span></li>
+                <div uib-collapse="!isCollapsed">
+                    <table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Exception</th>
+							<th>Fragment</th>
+							<th>Version</th>
+							<th>Created</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="event in list">
+							<td>{{ event.exception }}</td>
+							<td>{{ event.fragment }}</td>
+							<td>{{ event.version }}</td>
+							<td>{{ event.createdAt | date }}</td>
+							<td><button class="btn btn-info">More</button></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+            </ul>
+		</div>
 	</div>
 </div>

@@ -10,11 +10,12 @@ function AppController($scope, appService, localStorageService, $location, $rout
     vm.showErrorMessage = false;
     vm.apps = [];
     vm.app = {};
-    vm.choices = ['All', 'By fragments'];
+    vm.choices = ['All', 'By fragment', 'By version'];
     vm.option = ""; //'All';
     vm.events = [];
     vm.showAllEvents = false;
-    vm.showByFragments = true;
+    vm.showByFragments = false;
+    vm.showByVersion = false;
     vm.filteredLists = [];
 
     vm.loadApp = function () {
@@ -46,13 +47,16 @@ function AppController($scope, appService, localStorageService, $location, $rout
 
     vm.showEvents = function () {
         vm.events = vm.app.events;
+        vm.filteredLists = [];
         if (vm.option == "All") {
             vm.showAllEvents = true;
             vm.showByFragments = false;
+            vm.showByVersion = false;
         }
-        else if (vm.option == "By fragments") {
+        else if (vm.option == "By fragment") {
             vm.showByFragments = true;
             vm.showAllEvents = false;
+            vm.showByVersion = false;
             fragments = [];
             for (i = 0; i < vm.app.events.length; ++i) {  //for petlja koja napravi listu fragments koja sadrzi unique nazive fragmenata
                 if (!fragments.includes(vm.app.events[i].fragment))
@@ -60,10 +64,25 @@ function AppController($scope, appService, localStorageService, $location, $rout
             }
             for (i = 0; i < fragments.length; ++i) {  //za svaki taj fragment pozivamo funkciju filter (ugradjena js fja)
                 list = vm.events.filter(function (event) {
-                    console.log(fragments[i]);
                     return event.fragment == fragments[i];
                 });
                 vm.filteredLists.push(list); //listu filtriranu po jednoj vrsti fragmenta smestimo u veliku listu
+            }
+        }
+        else if (vm.option == "By version") {
+            vm.showByFragments = false;
+            vm.showAllEvents = false;
+            vm.showByVersion = true;
+            versions = [];
+            for (i = 0; i < vm.app.events.length; ++i) {  //for petlja koja napravi listu versions koja sadrzi unique nazive verzija
+                if (!versions.includes(vm.app.events[i].version))
+                    versions.push(vm.app.events[i].version);
+            }
+            for (i = 0; i < versions.length; ++i) {  //za svaku verziju pozivamo funkciju filter (ugradjena js fja)
+                list = vm.events.filter(function (event) {
+                    return event.version == versions[i];
+                });
+                vm.filteredLists.push(list); //listu filtriranu po jednoj vrsti verzije smestimo u veliku listu
             }
         }
     }
