@@ -52,8 +52,11 @@ userRouter
     var pass = req.body.password;
 
     User.findOne({"email":email},function (err, entry) {
-      if(err) return next(err);
-      if (pass != entry.password) {
+     // if(err) return next(err);
+      if(entry ==  null){
+        return res.json("User not found.");
+      } 
+      else if (pass != entry.password) {
         return next(err)
       }
       res.json(entry);

@@ -1,11 +1,9 @@
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<title>Digital Team HTML5 Layout - Tooplate</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/animate.min.css">
@@ -14,140 +12,143 @@
 	<link rel="stylesheet" href="/css/nivo_themes/default/default.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+
+	<!--ANGULAR -->
+	<script src="/js/angular.js"></script>
+	<script src="/js/angular-local-storage.js"></script>
+	<script src="/js/angular-route.js"></script>
+	<script src="/js/ui-bootstrap-tpls-2.3.1.js"></script>
+	<script src="/angular/app.js"></script>
+	<script src="/angular/app.controllers.js"></script>
+	<script src="/angular/app.services.js"></script>
+	<script src="/angular/app.routes.js"></script>
+
+	<!--SERVICES -->
+	<script src="/angular/components/login/service.login.js"></script>
+	<!--CONTROLLERS -->
+	<script src="/angular/components/login/controller.login.js"></script>
+
 </head>
-<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
-<!-- preloader section -->
-<div class="preloader">
-	<div class="sk-spinner sk-spinner-circle">
-       <div class="sk-circle1 sk-circle"></div>
-       <div class="sk-circle2 sk-circle"></div>
-       <div class="sk-circle3 sk-circle"></div>
-       <div class="sk-circle4 sk-circle"></div>
-       <div class="sk-circle5 sk-circle"></div>
-       <div class="sk-circle6 sk-circle"></div>
-       <div class="sk-circle7 sk-circle"></div>
-       <div class="sk-circle8 sk-circle"></div>
-       <div class="sk-circle9 sk-circle"></div>
-       <div class="sk-circle10 sk-circle"></div>
-       <div class="sk-circle11 sk-circle"></div>
-       <div class="sk-circle12 sk-circle"></div>
-    </div>
-</div>
-
-<!-- navigation section -->
-<section class="navbar navbar-fixed-top custom-navbar" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50" ng-app="kmjNVT">
+	<!-- navigation section -->
+	<section class="navbar navbar-fixed-top custom-navbar" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon icon-bar"></span>
 				<span class="icon icon-bar"></span>
 				<span class="icon icon-bar"></span>
 			</button>
-			<a href="#" class="navbar-brand">KMJ</a>
-		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="" class="smoothScroll">HOME</a></li>
-				<li><a href="#contact" class="smoothScroll">CONTACT</a></li>
-				<li><a href="" class="smoothScroll">LOGIN</a></li>
-			</ul>
-		</div>
-	</div>
-</section>
-
-<!-- home section -->
-<section id="home">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<h3>CATCH ERROR / NOTIFY DEVELOPER / FIX PROBLEM</h3>
-				<h1>Never miss errors in your app!</h1>
-				<hr>
-				<h3>Our app will help you to catch all errors that happens in your app. Do not wait users to report bugs.</h3>
-				</div>
-		</div>
-	</div>		
-</section>
-
-<!-- work section -->
-<section id="work">
-	<div class="container">
-		<div class="row">
-		</div>
-	</div>
-</section>
-
-<!-- contact section -->
-<section id="contact">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 text-center">
-				<div class="section-title">
-					<h1 class="heading bold">CONTACT US</h1>
-					<hr>
-				</div>
+				<a href="#" class="navbar-brand">KMJ</a>
 			</div>
-			<div class="col-md-6 col-sm-12 contact-info">
-				<h2 class="heading bold">CONTACT INFO</h2>
-				<p>Contact us if you have any problem or you want to buy our product.</p>
-				<div class="col-md-6 col-sm-4">
-					<h3><i class="icon-envelope medium-icon wow bounceIn" data-wow-delay="0.6s"></i> EMAIL</h3>
-					<p>kmj.it.girls@gmail.com</p>
-				</div>
-				<div class="col-md-6 col-sm-4">
-					<h3><i class="icon-phone medium-icon wow bounceIn" data-wow-delay="0.6s"></i> PHONES</h3>
-					<p> 00381-601-22-58 | 00381-611-52-99</p>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-12">
-				<form action="#" method="get" class="wow fadeInUp" data-wow-delay="0.6s">
-					<div class="col-md-6 col-sm-6">
-						<input type="text" class="form-control" placeholder="Name" name="name">
-					</div>
-					<div class="col-md-6 col-sm-6">
-						<input type="email" class="form-control" placeholder="Email" name="email">
-					</div>
-					<div class="col-md-12 col-sm-12">
-						<textarea class="form-control" placeholder="Message" rows="7" name="message"></textarea>
-					</div>
-					<div class="col-md-offset-4 col-md-8 col-sm-offset-4 col-sm-8">
-						<input type="submit" class="form-control" value="SEND MESSAGE">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- footer section -->
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<p>Copyright © KMJ 2017.</p>
-				<hr>
-				<ul class="social-icon">
-					<li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>
-					<li><a href="#" class="fa fa-linkedin wow fadeIn" data-wow-delay="0.3s"></a></li>
-					<li><a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a></li>
-					<li><a href="#" class="fa fa-instagram wow fadeIn" data-wow-delay="0.3s"></a></li>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="" >HOME</a></li>
+					<li><a href="#contact" class="smoothScroll">CONTACT</a></li>
+					<li><a href="/#/login">LOGIN</a></li>
 				</ul>
 			</div>
 		</div>
-	</div>
-</footer>
+	</section>
+
+	<!-- home section -->
+	<section id="home">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<h3>CATCH ERROR / NOTIFY DEVELOPER / FIX PROBLEM</h3>
+					<h1>Never miss errors in your app!</h1>
+					<hr>
+					<h3>Our app will help you to catch all errors that happens in your app. Do not wait users to report bugs.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- work section -->
+	<section id="work">
+		<div class="container" ng-view>
+		</div>
+	</section>
+
+	<!-- contact section -->
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 text-center">
+					<div class="section-title">
+						<h1 class="heading bold">CONTACT US</h1>
+						<hr>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 contact-info">
+					<h2 class="heading bold">CONTACT INFO</h2>
+					<p>Contact us if you have any problem or you want to buy our product.</p>
+					<div class="col-md-6 col-sm-4">
+						<h3><i class="icon-envelope medium-icon wow bounceIn" data-wow-delay="0.6s"></i> EMAIL</h3>
+						<p>kmj.it.girls@gmail.com</p>
+					</div>
+					<div class="col-md-6 col-sm-4">
+						<h3><i class="icon-phone medium-icon wow bounceIn" data-wow-delay="0.6s"></i> PHONES</h3>
+						<p> 00381-601-22-58 | 00381-611-52-99</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<form action="#" method="get" class="wow fadeInUp" data-wow-delay="0.6s">
+						<div class="col-md-6 col-sm-6">
+							<input type="text" class="form-control" placeholder="Name" name="name">
+						</div>
+						<div class="col-md-6 col-sm-6">
+							<input type="email" class="form-control" placeholder="Email" name="email">
+						</div>
+						<div class="col-md-12 col-sm-12">
+							<textarea class="form-control" placeholder="Message" rows="7" name="message"></textarea>
+						</div>
+						<div class="col-md-offset-4 col-md-8 col-sm-offset-4 col-sm-8">
+							<input type="submit" class="form-control" value="SEND MESSAGE">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- footer section -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<p>Copyright © KMJ 2017.</p>
+					<hr>
+					<ul class="social-icon">
+						<li>
+							<a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a>
+						</li>
+						<li>
+							<a href="#" class="fa fa-linkedin wow fadeIn" data-wow-delay="0.3s"></a>
+						</li>
+						<li>
+							<a href="#" class="fa fa-twitter wow fadeIn" data-wow-delay="0.6s"></a>
+						</li>
+						<li>
+							<a href="#" class="fa fa-instagram wow fadeIn" data-wow-delay="0.3s"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/smoothscroll.js"></script>
-<script src="/js/isotope.js"></script>
-<script src="/js/imagesloaded.min.js"></script>
-<script src="/js/nivo-lightbox.min.js"></script>
-<script src="/js/jquery.backstretch.min.js"></script>
-<script src="/js/wow.min.js"></script>
-<script src="/js/custom.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/smoothscroll.js"></script>
+	<script src="/js/isotope.js"></script>
+	<script src="/js/imagesloaded.min.js"></script>
+	<script src="/js/nivo-lightbox.min.js"></script>
+	<script src="/js/jquery.backstretch.min.js"></script>
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/custom.js"></script>
 
 </body>
 </html>

@@ -56,9 +56,9 @@ app.use(function(err, req, res, next) {
 
 
 // Klijnetska strana -------------------------------------------------------------
-app.use(express.static(path.join(__dirname, 'client')));
-app.get('/index', function(req, res) {
-    res.sendFile(path.join(__dirname + '/client/index.html'));
+app.use(express.static(path.join(__dirname, 'client')));  //Serviranje statickih fajlova
+app.get('', function(req, res) {
+    res.sendFile(path.join(__dirname + '/client/index.html'));  //mapiranje na index stranicu
 });
 
 // Pokretanje servera
