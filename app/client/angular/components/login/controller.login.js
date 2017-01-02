@@ -12,7 +12,7 @@ function LoginController($scope, loginService, localStorageService, $location) {
 
 	vm.login = function () {
 		loginService.login(vm.user).then(function (response) {
-			if (response.data.startsWith("User")) {
+			if (response.data.message != null) {
 				vm.showError = true;
 			}
 			else {

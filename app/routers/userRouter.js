@@ -54,7 +54,8 @@ userRouter
     User.findOne({"email":email},function (err, entry) {
      // if(err) return next(err);
       if(entry ==  null){
-        return res.json("User not found.");
+        res.send(JSON.stringify({ message: 'User not found' }));
+        return next(err);
       } 
       else if (pass != entry.password) {
         return next(err)
