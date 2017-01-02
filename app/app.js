@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var path = require('path');
 mongoose.Promise = require('bluebird');
 
 
@@ -54,8 +55,12 @@ app.use(function(err, req, res, next) {
 });
 
 
+// Klijnetska strana -------------------------------------------------------------
+app.use(express.static(path.join(__dirname, 'client')));
+app.get('/index', function(req, res) {
+    res.sendFile(path.join(__dirname + '/client/index.html'));
+});
+
 // Pokretanje servera
 app.listen(port);
-
-
 console.log('Server radi na portu ' + port);

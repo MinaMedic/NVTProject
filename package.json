@@ -14,7 +14,8 @@
     "mongoose": "^4.3.7",
     "nodemailer": "^2.6.4",
     "passport": "^0.3.2",
-    "passport-http": "^0.3.0"
+    "passport-http": "^0.3.0",
+    "path" : "0.12.7"
   },
   "license": "MIT"
 }
