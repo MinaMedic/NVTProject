@@ -1,0 +1,72 @@
+<div class="container-fluid">
+	<div class="col-sm-3">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h2>{{appCtrl.app.name}}</h2>
+			</div>
+			<div class="panel-body text-left">
+				<p><b>Created at</b>: {{appCtrl.app.createdAt | date}} </br>
+					<b>Description:</b>{{appCtrl.app.description}} </br>
+					<b>Version:</b> {{appCtrl.app.version || "/"}} </br>
+					<b>Repository:</b><a href="{{appCtrl.app.repo}} "> Link</a> </br>
+					<b>Domain:</b> {{appCtrl.app.domain}} </br>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-9">
+		<div class="well text-left">
+			<b>Show events: </b>
+			<label class="radio-inline" ng-repeat="choice in appCtrl.choices"><input type="radio" ng-model="appCtrl.option" ng-value="choice" ng-click="appCtrl.showEvents()">{{choice}}</label>
+		</div>
+		<div ng-show="appCtrl.showAllEvents">
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Exception</th>
+						<th>Fragment</th>
+						<th>Version</th>
+						<th>Created</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="event in appCtrl.events">
+						<td>{{ event.exception }}</td>
+						<td>{{ event.fragment }}</td>
+						<td>{{ event.version }}</td>
+						<td>{{ event.createdAt | date }}</td>
+						<td><button class="btn btn-info">More</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div ng-show="appCtrl.showByFragments">
+            <ul class="list-group" ng-repeat="list in appCtrl.filteredLists">
+			<div class="text-left">
+				<li class="list-group-item" ng-click="isCollapsed = !isCollapsed">{{list[0].fragment}} fragment <span class="badge">{{list.length}}</span></li>
+                <div uib-collapse="!isCollapsed">
+                    <table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Exception</th>
+							<th>Fragment</th>
+							<th>Version</th>
+							<th>Created</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="event in list">
+							<td>{{ event.exception }}</td>
+							<td>{{ event.fragment }}</td>
+							<td>{{ event.version }}</td>
+							<td>{{ event.createdAt | date }}</td>
+							<td><button class="btn btn-info">More</button></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+            </ul>
+		</div>
+	</div>
+</div>

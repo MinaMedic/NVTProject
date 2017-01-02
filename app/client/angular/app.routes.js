@@ -16,8 +16,13 @@ kmjNVT.config(['$routeProvider', function ($routeProvider) {
             controller: 'RegistrationAppController',
             controllerAs: 'registrationAppCtrl'
         })
-         .when('/apps', {
+        .when('/apps', {
             templateUrl: '/angular/components/app/allApps.html',
+            controller: 'AppController',
+            controllerAs: 'appCtrl'
+        })
+        .when('/apps/:id', {
+            templateUrl: '/angular/components/app/app.html',
             controller: 'AppController',
             controllerAs: 'appCtrl'
         })
