@@ -1,9 +1,9 @@
 <html>
 
 <head>
-	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/animate.min.css">
@@ -26,14 +26,20 @@
 	<!--SERVICES -->
 	<script src="/angular/components/login/service.login.js"></script>
 	<script src="/angular/components/registration/service.registration.js"></script>
+	<script src="/angular/components/registrationApp/service.registrationApp.js"></script>
+	<script src="/angular/components/app/service.app.js"></script>
 	<!--CONTROLLERS -->
 	<script src="/angular/components/login/controller.login.js"></script>
 	<script src="/angular/components/registration/controller.registration.js"></script>
+	<script src="/angular/components/menu/controller.menu.js"></script>
+	<script src="/angular/components/registrationApp/controller.registrationApp.js"></script>
+	<script src="/angular/components/app/controller.app.js"></script>
 
 </head>
+
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50" ng-app="kmjNVT">
 	<!-- navigation section -->
-	<section class="navbar navbar-fixed-top custom-navbar" role="navigation">
+	<section class="navbar navbar-fixed-top custom-navbar" role="navigation" ng-controller="MenuController as menu">
 		<div class="container">
 			<div class="navbar-header">
 				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,9 +51,14 @@
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="" >HOME</a></li>
+					<li><a href="">HOME</a></li>
+					<li ng-show="menu.loggedUser()"><a href="/#/registerApp">REGISTER APP</a></li>
+					<li ng-show="menu.loggedUser()"><a href="/#/apps">MY APPs</a></li>
 					<li><a href="#contact" class="smoothScroll">CONTACT</a></li>
-					<li><a href="/#/login">LOGIN</a></li>
+					<li>
+						<a href="/#/login" ng-show="!menu.loggedUser()">LOGIN</a>
+						<a href="/#/logout" ng-click="menu.logout()" ng-show="menu.loggedUser()">LOGOUT</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -153,4 +164,5 @@
 	<script src="/js/custom.js"></script>
 
 </body>
+
 </html>

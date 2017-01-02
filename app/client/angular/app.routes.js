@@ -6,10 +6,20 @@ kmjNVT.config(['$routeProvider', function ($routeProvider) {
             controller: 'LoginController',
             controllerAs: 'loginCtrl'
         })
-         .when('/register', {
+        .when('/register', {
             templateUrl: '/angular/components/registration/registration.html',
             controller: 'RegistrationController',
             controllerAs: 'registrationCtrl'
+        })
+        .when('/registerApp', {
+            templateUrl: '/angular/components/registrationApp/registrationApp.html',
+            controller: 'RegistrationAppController',
+            controllerAs: 'registrationAppCtrl'
+        })
+         .when('/apps', {
+            templateUrl: '/angular/components/app/allApps.html',
+            controller: 'AppController',
+            controllerAs: 'appCtrl'
         })
         .otherwise({
             redirectTo: '/'

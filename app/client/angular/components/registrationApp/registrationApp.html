@@ -1,0 +1,52 @@
+<div class="container text-center">
+	<h2>Please register your application</h2>
+
+	<div class="col-sm-6 col-sm-offset-3">
+		<hr/>
+		<div class="alert alert-success" ng-show="registrationAppCtrl.showSuccessMessage">
+			Your application is sucessfully registered.
+		</div>
+        <div class="alert alert-danger" ng-show="registrationAppCtrl.showErrorMessage">
+			An error occured while trying to register your app. Please try again.
+		</div>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="ime">Name:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" id="ime" ng-model="registrationAppCtrl.app.name" placeholder="Enter name" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="prezime">Description:</label>
+				<div class="col-sm-6">
+					<textarea class="form-control" rows="5" placeholder="Enter description" required ng-model="registrationAppCtrl.app.description"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="pwd">Version:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" ng-model="registrationAppCtrl.app.version" placeholder="Enter version">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="pwd">Repository link:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" ng-model="registrationAppCtrl.app.repo" placeholder="Enter repository link">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="pwd">Domain:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" ng-model="registrationAppCtrl.app.domain" placeholder="Enter domain" requred>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-1 col-sm-offset-4">
+					<button type="submit" class="btn btn-default" ng-click="registrationAppCtrl.registerApp()">Save</button>
+				</div>
+			</div>
+		</form>
+		<hr/>
+		<p>You have already registered your app? Click <a ng-href="/#/apps">here</a> to see your apps.</p>
+	</div>
+</div>
