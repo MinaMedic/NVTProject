@@ -30,7 +30,21 @@
 			<div ng-repeat="comment in eventCtrl.event.comments">
 				<img src="./././images/user.png" / class="pull-left"> Posted by: <i>{{comment.signedBy}}</i><br/> {{comment.text}}
 				<br/>
-				<span style="color:gray"> on {{comment.createdAt | date}} </span> <a><i>Reply</i></a>
+				<span style="color:gray"> on {{comment.createdAt |  date:"dd.MM.yyyy H:mm" }} </span>
+				<br/><a class="col-sm-offset-1" ng-show="comment.comments.length" ng-click="eventCtrl.getComments(comment); eventCtrl.showComments(comment._id);">More comments...</a>
+				<div id="{{comment._id}}" style="display:none;">
+					<div ng-repeat="li in eventCtrl.list" class="col-sm-offset-1">
+						<img src="./././images/user.png" / class="pull-left"> Posted by: <i>{{li.signedBy}}</i><br/> {{li.text}}
+						<br/>
+						<span style="color:gray"> on {{li.createdAt |  date:"dd.MM.yyyy H:mm" }} </span>
+					</div>
+					<form class="form-inline col-sm-offset-2" name="eventCtrl.newComment2Form" novalidate>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter your comment" ng-model="eventCtrl.comment2.text">
+						</div>
+						<button class="btn btn-info" ng-click="eventCtrl.addComment2()">Reply</button>
+					</form>
+				</div>
 				<p></p>
 			</div>
 		</div>

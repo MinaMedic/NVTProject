@@ -5,7 +5,8 @@ eventService.$inject = ['$http'];
 function eventService($http) {
 	return {
 		getEvent: getEvent,
-		addComment : addComment
+		addComment : addComment,
+		getComments : getComments
 	}
 
 	function getEvent(eventId){
@@ -14,6 +15,10 @@ function eventService($http) {
 
 	function addComment(comment, idEvent){
 		return $http.post(apiRoot+"comments/event/"+idEvent, comment);
+	}
+
+	function getComments(comment){
+		return $http.get(apiRoot+"comments/all/"+ comment);
 	}
 	
 }
