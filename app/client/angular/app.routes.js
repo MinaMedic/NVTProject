@@ -26,6 +26,11 @@ kmjNVT.config(['$routeProvider', function ($routeProvider) {
             controller: 'AppController',
             controllerAs: 'appCtrl'
         })
+        .when('/events/:id', {
+            templateUrl: '/angular/components/event/event.html',
+            controller: 'EventController',
+            controllerAs: 'eventCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

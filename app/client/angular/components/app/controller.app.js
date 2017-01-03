@@ -86,4 +86,8 @@ function AppController($scope, appService, localStorageService, $location, $rout
             }
         }
     }
+
+    vm.showEvent = function(eventId){
+        $location.path("/events/"+eventId);
+    }
 }

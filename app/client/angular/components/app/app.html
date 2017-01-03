@@ -5,7 +5,7 @@
 				<h2>{{appCtrl.app.name}}</h2>
 			</div>
 			<div class="panel-body text-left">
-				<p><b>Created at</b>: {{appCtrl.app.createdAt | date}} </br>
+				<p><b>Created at</b>: {{appCtrl.app.createdAt | date:"dd.MM.yyyy H:mm"}} </br>
 					<b>Description:</b>{{appCtrl.app.description}} </br>
 					<b>Version:</b> {{appCtrl.app.version || "/"}} </br>
 					<b>Repository:</b><a href="{{appCtrl.app.repo}} "> Link</a> </br>
@@ -34,8 +34,8 @@
 						<td>{{ event.exception }}</td>
 						<td>{{ event.fragment }}</td>
 						<td>{{ event.version }}</td>
-						<td>{{ event.createdAt | date }}</td>
-						<td><button class="btn btn-info">More</button></td>
+						<td>{{ event.createdAt | date:"dd.MM.yyyy H:mm" }}</td>
+						<td><button class="btn btn-info" ng-click="appCtrl.showEvent(event._id)">More</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -59,8 +59,8 @@
 							<td>{{ event.exception }}</td>
 							<td>{{ event.fragment }}</td>
 							<td>{{ event.version }}</td>
-							<td>{{ event.createdAt | date }}</td>
-							<td><button class="btn btn-info">More</button></td>
+							<td>{{ event.createdAt | date:"dd.MM.yyyy H:mm" }}</td>
+							<td><button class="btn btn-info" ng-click="appCtrl.showEvent(event._id)">More</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -87,8 +87,8 @@
 							<td>{{ event.exception }}</td>
 							<td>{{ event.fragment }}</td>
 							<td>{{ event.version }}</td>
-							<td>{{ event.createdAt | date }}</td>
-							<td><button class="btn btn-info">More</button></td>
+							<td>{{ event.createdAt | date:"dd.MM.yyyy H:mm" }}</td>
+							<td><button class="btn btn-info" ng-click="appCtrl.showEvent(event._id)">More</button></td>
 						</tr>
 					</tbody>
 				</table>
