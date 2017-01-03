@@ -10,7 +10,7 @@ var Event = require('../model/event').model;
 //Definisanje ruta za komentar
 commentRouter
   //Metoda koja vraca sve komentare
-  //URL: api/users
+  //URL: api/comments
   .get('/', function(req, res) {
     Comment.find({}, function(err, data, next) {
       res.json(data);

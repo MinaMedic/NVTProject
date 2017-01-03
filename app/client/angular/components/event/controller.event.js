@@ -8,6 +8,7 @@ function EventController($scope, eventService, localStorageService, $location, $
 
     var vm = this;
     vm.event = {};
+    vm.comment = {};
 
     vm.init = function(){
         if ($routeParams.id != null){
@@ -19,4 +20,16 @@ function EventController($scope, eventService, localStorageService, $location, $
         }
     }
     vm.init();
+
+    vm.addComment = function(){
+        vm.comment.signedBy = localStorage.getItem('email');
+        vm.comment.createdAt = new Date();
+        eventService.addComment(vm.comment, vm.event._id).then(function(response){
+            vm.event.comments.push(vm.comment);
+            vm.newCommentForm.$setPristine();
+            vm.comment = {};
+        }).catch(function(){
+            console.log("Error saving comment");
+        });
+    };
 };

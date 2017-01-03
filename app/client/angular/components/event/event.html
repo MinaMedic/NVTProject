@@ -5,7 +5,7 @@
 		</div>
 		<div class="panel-body text-left">
 			<p>
-                <label>Created at: </label> {{eventCtrl.event.createdAt | date:"dd.MM.yyyy H:mm"}} </br>
+				<label>Created at: </label> {{eventCtrl.event.createdAt | date:"dd.MM.yyyy H:mm"}} </br>
 				<label>Exception:</label> {{eventCtrl.event.exception}} </br>
 				<label>Info:</label> {{eventCtrl.event.info}} </br>
 				<label>Fragment:</label> {{eventCtrl.event.fragment}} </br>
@@ -15,15 +15,24 @@
 	</div>
 </div>
 
-<div class="text-left col-sm-8">
+<div class="text-left col-sm-6">
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<h2>Comments</h2>
 		</div>
-		<div class="panel-body text-left">
-			<p>
-               <h2>Ovde ce se nekako prikazivati komentari i treba da dodaje komentar na komentar.</h2>
-			</p>
+		<div class="panel-body ">
+			<form class="form-inline" name="eventCtrl.newCommentForm" novalidate>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Enter your comment" ng-model="eventCtrl.comment.text">
+				</div>
+				<button class="btn btn-info" ng-click="eventCtrl.addComment()">Send</button>
+			</form>
+			<div ng-repeat="comment in eventCtrl.event.comments">
+				<img src="./././images/user.png" / class="pull-left"> Posted by: <i>{{comment.signedBy}}</i><br/> {{comment.text}}
+				<br/>
+				<span style="color:gray"> on {{comment.createdAt | date}} </span> <a><i>Reply</i></a>
+				<p></p>
+			</div>
 		</div>
 	</div>
 </div>

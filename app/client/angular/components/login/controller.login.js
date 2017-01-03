@@ -17,7 +17,8 @@ function LoginController($scope, loginService, localStorageService, $location) {
 			}
 			else {
 				localStorage.setItem("user", JSON.stringify(response.data));
-				localStorage.setItem('userId',response.data._id);
+				localStorage.setItem('userId', response.data._id);
+				localStorage.setItem('email', response.data.email);
 				$location.path("/");
 			}
 		}).catch(function () {

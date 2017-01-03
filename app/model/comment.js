@@ -10,7 +10,10 @@ var commentSchema = new Schema({
   },
   createdAt: Date,
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
-  signedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+  signedBy: {
+    type: String,
+    required : true
+  }
 });
 
 
