@@ -6,6 +6,7 @@ function eventService($http) {
 	return {
 		getEvent: getEvent,
 		addComment : addComment,
+		addComment2 : addComment2,
 		getComments : getComments
 	}
 
@@ -15,6 +16,10 @@ function eventService($http) {
 
 	function addComment(comment, idEvent){
 		return $http.post(apiRoot+"comments/event/"+idEvent, comment);
+	}
+
+	function addComment2(commentId, comment){
+		return $http.post(apiRoot+"comments/comment/"+commentId, comment);
 	}
 
 	function getComments(comment){

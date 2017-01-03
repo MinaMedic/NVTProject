@@ -9,6 +9,7 @@ function EventController($scope, eventService, localStorageService, $location, $
     var vm = this;
     vm.event = {};
     vm.comment = {};
+    vm.comment2 = {};
     vm.showCommentBox = false;
     vm.showMoreComments = false;
 
@@ -38,23 +39,37 @@ function EventController($scope, eventService, localStorageService, $location, $
     vm.list = [];
     vm.getComments = function (comment) {
         eventService.getComments(comment._id).then(function (response) {
-            vm.list =  response.data;
+            vm.list = response.data;
         }).catch(function () {
             console.log("Error getting comments.");
         });
     };
-    
-    vm.showComments = function(id){
-        for (i in vm.event.comments){
-            div =  document.getElementById(vm.event.comments[i]._id);
-            if (vm.event.comments[i]._id == id){
-               div.style.display = "block";
+
+    vm.showComments = function (id) {
+        for (i in vm.event.comments) {
+            div = document.getElementById(vm.event.comments[i]._id);
+            if (div != null){
+            if (vm.event.comments[i]._id == id) {
+                div.style.display = "block";
             }
-            else{
+            else {
                 if (div.style.display !== 'none') {
                     div.style.display = 'none';
                 }
             }
+         }
         }
+    };
+    //Funkcija koja snima komentar na komentar
+    vm.addComment2 = function (commentId) {
+        vm.comment2.signedBy = localStorage.getItem('email');
+        vm.comment2.createdAt = new Date();
+        eventService.addComment2(commentId, vm.comment2).then(function (response) {
+            vm.list.push(vm.comment2);
+            vm.newComment2Form.$setPristine();
+            vm.comment2 = {};
+        }).catch(function () {
+            console.log("Error saving comment2.")
+        });
     };
 };
