@@ -36,6 +36,9 @@ kmjNVT.config(['$routeProvider', function ($routeProvider) {
             controller: 'ColController',
             controllerAs: 'colCtrl'
         })
+        .when('/', {
+            templateUrl: '/angular/components/index/indexView.html'
+        })
         .otherwise({
             redirectTo: '/'
         });
