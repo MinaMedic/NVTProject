@@ -3,7 +3,8 @@ angular.module('kmjNVT', [
 		'kmjNVT.services',  
 		'kmjNVT.routes',
 		'ui.bootstrap',
-		'LocalStorageModule'
+		'LocalStorageModule',
+		'chart.js'
 		]);
 
 var apiRoot = 'http://localhost:8080/api/'

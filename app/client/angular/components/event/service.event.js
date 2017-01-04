@@ -7,7 +7,8 @@ function eventService($http) {
 		getEvent: getEvent,
 		addComment : addComment,
 		addComment2 : addComment2,
-		getComments : getComments
+		getComments : getComments,
+		getChartData : getChartData
 	}
 
 	function getEvent(eventId){
@@ -24,6 +25,10 @@ function eventService($http) {
 
 	function getComments(comment){
 		return $http.get(apiRoot+"comments/all/"+ comment);
+	}
+
+	function getChartData(idEvent, fragment){
+		return $http.post(apiRoot+"events/fragments/"+idEvent, fragment);
 	}
 	
 }

@@ -13,10 +13,47 @@ function EventController($scope, eventService, localStorageService, $location, $
     vm.showCommentBox = false;
     vm.showMoreComments = false;
 
+    vm.labels = [];
+    vm.data = [];
+
+    function countInArray(array, what) {
+        var count = 0;
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] === what) {
+                count++;
+            }
+        }
+        return count;
+    }
+    vm.loadChartData = function () {
+        datesList = [];
+        var fragment = "{\"fragment\": \"" + vm.event.fragment + "\"}";
+        eventService.getChartData(vm.event._id, fragment).then(function (response) {
+            data = response.data;
+            for (i = 0; i < data.length; i++) {
+                d = data[i].createdAt.substring(0, 10)
+                datesList.push(d);
+            }
+            datesList = datesList.sort();
+            var count = {};
+            datesList.forEach(function (i) { count[i] = (count[i] || 0) + 1; }); //brojanje ponavljanja
+
+            for (var key in count) { //popunjavanje ponavljanja
+                if (count.hasOwnProperty(key)) {
+                    vm.labels.push(key);
+                    vm.data.push(count[key]);
+                }
+            }
+        }).catch(function () {
+            console.log("Error getting chart data");
+        });
+    }
+
     vm.init = function () {
         if ($routeParams.id != null) {
             eventService.getEvent($routeParams.id).then(function (response) {
                 vm.event = response.data;
+                vm.loadChartData();
             }).catch(function () {
                 console.log("Error getting event.")
             });
@@ -48,16 +85,16 @@ function EventController($scope, eventService, localStorageService, $location, $
     vm.showComments = function (id) {
         for (i in vm.event.comments) {
             div = document.getElementById(vm.event.comments[i]._id);
-            if (div != null){
-            if (vm.event.comments[i]._id == id) {
-                div.style.display = "block";
-            }
-            else {
-                if (div.style.display !== 'none') {
-                    div.style.display = 'none';
+            if (div != null) {
+                if (vm.event.comments[i]._id == id) {
+                    div.style.display = "block";
+                }
+                else {
+                    if (div.style.display !== 'none') {
+                        div.style.display = 'none';
+                    }
                 }
             }
-         }
         }
     };
     //Funkcija koja snima komentar na komentar
