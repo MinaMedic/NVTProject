@@ -2,21 +2,24 @@
 	<div class="alert alert-info" ng-show="appCtrl.showErrorMessage">
 		You do not have any registered app. Please go to page <b>register app</b>.
 	</div>
-	<div class="container-fluid" >
+	<div class="container-fluid">
 		<div class="col-sm-6" ng-repeat="app in appCtrl.apps">
-			<div class="panel panel-info" >
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h2>{{app.name}}</h2>
 				</div>
 				<div class="panel-body text-left">
-                    <p><b>Created at</b>: {{app.createdAt | date}} </br>
-                    <b>Description:</b>{{app.description}} </br>
-                    <b>Version:</b> {{app.version || "/"}} </br>
-                    <b>Repository:</b> {{app.repo || "/"}} </br>
-                    <b>Domain:</b> {{app.domain}} </br>
-                    </p>
-                    <button type="button" class="btn btn-default pull-right" ng-click="appCtrl.viewEvents(app._id)">View events</button>
-                </div>
+					<p><b>Created at</b>: {{app.createdAt | date}} </br>
+						<b>Description:</b>{{app.description}} </br>
+						<b>Version:</b> {{app.version || "/"}} </br>
+						<b>Repository:</b> {{app.repo || "/"}} </br>
+						<b>Domain:</b> {{app.domain}} </br>
+					</p>
+					<div class="pull-left">
+						<button type="button" class="btn btn-default" ng-click="appCtrl.viewEvents(app._id)">View events</button>
+						<button type="button" class="btn btn-default " ng-click="appCtrl.addCollaborator(app._id);">Add collaborator</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

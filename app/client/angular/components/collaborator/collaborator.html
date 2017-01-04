@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-sm-offset-3">
+    <h1>Add collaborator</h1>
+    <hr/>
+    <div class="alert alert-danger" ng-show="colCtrl.showErrorBox">
+        User not found. Please try again.
+    </div>
+    <div class="alert alert-success" ng-show="colCtrl.showSuccessBox">
+        Collaborator is successfully added. Collaborator will be notified.
+    </div>
+    <form class="form-inline">
+    <input type="email" class="form-control" placeholder="Enter email address..." ng-model="colCtrl.email">
+    <button type="button" class="btn btn-info" ng-click="colCtrl.addCollaborator();">Add collaborator</button>
+    </form>
+</div>

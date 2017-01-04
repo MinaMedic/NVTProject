@@ -18,6 +18,11 @@ function AppController($scope, appService, localStorageService, $location, $rout
     vm.showByVersion = false;
     vm.filteredLists = [];
 
+
+    vm.addCollaborator = function(id){
+        $location.path("/addCollaborator/"+id);
+    }
+
     vm.loadApp = function () {
         if ($routeParams.id != null) {
             appService.getApp($routeParams.id).then(function (response) {

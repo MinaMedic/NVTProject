@@ -31,6 +31,11 @@ kmjNVT.config(['$routeProvider', function ($routeProvider) {
             controller: 'EventController',
             controllerAs: 'eventCtrl'
         })
+        .when('/addCollaborator/:id', {
+            templateUrl: '/angular/components/collaborator/collaborator.html',
+            controller: 'ColController',
+            controllerAs: 'colCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

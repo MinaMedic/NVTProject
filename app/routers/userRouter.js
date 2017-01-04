@@ -99,9 +99,9 @@ userRouter
  //Funkcija vraca update-ovanog korisnika
  //URL: api/users/applicationNew/IDapp
  .post('/applicationNew/:id',function(req, res, next) {
-    User.findOne({"_id":req.body._id},function (err, entryUser) {
+    User.findOne({"email":req.body.email},function (err, entryUser) {
       if(err) return next(err);
-
+      if(entryUser != null){
       //Application.findOne({"_id":req.params.id},function (err, entry) {
       Application.findByIdAndUpdate(req.params.id, {$push:{"users":entryUser._id}}, function (err, entry) {
       if(err) return next(err);
@@ -115,6 +115,10 @@ userRouter
              })
           });
        });
+      }
+      else {
+        res.json("User not found");
+      }
     });
   });
 
