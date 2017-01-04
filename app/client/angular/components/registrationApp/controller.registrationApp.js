@@ -14,8 +14,10 @@ function RegistrationAppController($scope, registrationAppService, $location){
         userId = localStorage.getItem('userId');
 		registrationAppService.registerApp(userId,vm.app).then(function(response){
 			 vm.showSuccessMessage = true;
+			 vm.showErrorMessage = false;
 		}).catch(function(){
 			vm.showErrorMessage = true;
+			vm.showSuccessMessage = false;
 		});
 	}
 	
