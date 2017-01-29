@@ -1,4 +1,0 @@
-1. Da li funkciji koja dodaje korisnika u aplikaciju treba prosledjivati citav objekat korisnika
-ili samo ID?
-
-2. Da li ce se moci dodavati samo vec postojeci korisnici ili bilo koji?
